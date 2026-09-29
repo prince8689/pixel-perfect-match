@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      skyshield_stations: {
+        Row: {
+          health: number
+          humidity: number
+          id: string
+          latitude: number
+          longitude: number
+          name: string
+          pressure: number
+          rainfall: number
+          status: string
+          temperature: number
+          trust_score: number
+          updated_at: string
+          wind_direction: string
+          wind_speed: number
+        }
+        Insert: {
+          health: number
+          humidity: number
+          id: string
+          latitude: number
+          longitude: number
+          name: string
+          pressure: number
+          rainfall: number
+          status: string
+          temperature: number
+          trust_score: number
+          updated_at?: string
+          wind_direction: string
+          wind_speed: number
+        }
+        Update: {
+          health?: number
+          humidity?: number
+          id?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          pressure?: number
+          rainfall?: number
+          status?: string
+          temperature?: number
+          trust_score?: number
+          updated_at?: string
+          wind_direction?: string
+          wind_speed?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
