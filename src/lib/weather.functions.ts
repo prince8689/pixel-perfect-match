@@ -171,7 +171,7 @@ export const getLiveWeather = createServerFn({ method: "GET" })
           properties?: { parameter?: Record<string, Record<string, number>> };
         };
         const parameters = nasa.properties?.parameter;
-        const temperatures = parameters?.T2M;
+        const temperatures = parameters?.["T2M"];
         if (temperatures && Object.keys(temperatures).length > 0) {
           nasaStatus = "available";
           for (const key of Object.keys(temperatures).sort()) {
@@ -203,20 +203,20 @@ export const getLiveWeather = createServerFn({ method: "GET" })
         windSpeed: Number(current["wind_speed_10m"] ?? 0),
         windDirection: Number(current["wind_direction_10m"] ?? 0),
       } : null,
-      hourly: (hourly?.time ?? []).slice(0, 24).map((time, index) => ({
+      hourly: (hourly?.["time"] ?? []).slice(0, 24).map((time, index) => ({
         time: String(time),
-        temperature: numberAt(hourly?.temperature_2m, index),
-        precipitation: numberAt(hourly?.precipitation, index),
-        precipitationProbability: numberAt(hourly?.precipitation_probability, index),
-        weatherCode: numberAt(hourly?.weather_code, index),
+        temperature: numberAt(hourly?.["temperature_2m"], index),
+        precipitation: numberAt(hourly?.["precipitation"], index),
+        precipitationProbability: numberAt(hourly?.["precipitation_probability"], index),
+        weatherCode: numberAt(hourly?.["weather_code"], index),
       })),
-      daily: (daily?.time ?? []).map((date, index) => ({
+      daily: (daily?.["time"] ?? []).map((date, index) => ({
         date: String(date),
-        high: numberAt(daily?.temperature_2m_max, index),
-        low: numberAt(daily?.temperature_2m_min, index),
-        precipitation: numberAt(daily?.precipitation_sum, index),
-        precipitationProbability: numberAt(daily?.precipitation_probability_max, index),
-        weatherCode: numberAt(daily?.weather_code, index),
+        high: numberAt(daily?.["temperature_2m_max"], index),
+        low: numberAt(daily?.["temperature_2m_min"], index),
+        precipitation: numberAt(daily?.["precipitation_sum"], index),
+        precipitationProbability: numberAt(daily?.["precipitation_probability_max"], index),
+        weatherCode: numberAt(daily?.["weather_code"], index),
       })),
       nasaHistory,
       nasaStatus,

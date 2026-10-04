@@ -124,10 +124,10 @@ function AlertRow({ alert, onClick }: { alert: (typeof demoAlerts)[number]; onCl
 function RiskBar({ label, value, color }: { label: string; value: number; color: string }) {
   const fills: Record<string, string> = { amber: "bg-amber", cyan: "bg-cyan", alert: "bg-alert" };
   const texts: Record<string, string> = { amber: "text-amber", cyan: "text-cyan", alert: "text-alert" };
-  return <div><div className="mb-1.5 flex items-center justify-between"><span className="text-[10px] text-muted-ops">{label}</span><span className={`font-mono text-[9px] ${texts[color] ?? texts.amber}`}>{value}%</span></div><div className="h-1 overflow-hidden bg-panel2"><div className={`h-full transition-all duration-700 ${fills[color] ?? fills.amber}`} style={{ width: `${value}%` }}/></div></div>;
+  return <div><div className="mb-1.5 flex items-center justify-between"><span className="text-[10px] text-muted-ops">{label}</span><span className={`font-mono text-[9px] ${texts[color] ?? texts["amber"]}`}>{value}%</span></div><div className="h-1 overflow-hidden bg-panel2"><div className={`h-full transition-all duration-700 ${fills[color] ?? fills["amber"]}`} style={{ width: `${value}%` }}/></div></div>;
 }
 
 function StatusChip({ status }: { status: string }) {
   const tones: Record<string, string> = { healthy: "border-teal/30 bg-teal/10 text-teal", watch: "border-amber/30 bg-amber/10 text-amber", critical: "border-alert/30 bg-alert/10 text-alert" };
-  return <span className={`inline-flex items-center gap-1 border px-1.5 py-0.5 font-mono text-[8px] uppercase ${tones[status] ?? tones.healthy}`}>{status === "healthy" ? <Check size={9}/> : <AlertTriangle size={9}/>} {status}</span>;
+  return <span className={`inline-flex items-center gap-1 border px-1.5 py-0.5 font-mono text-[8px] uppercase ${tones[status] ?? tones["healthy"]}`}>{status === "healthy" ? <Check size={9}/> : <AlertTriangle size={9}/>} {status}</span>;
 }
